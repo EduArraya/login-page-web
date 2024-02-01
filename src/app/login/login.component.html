@@ -1,0 +1,12 @@
+<div class="estructuraFormulario">
+  <h1 class="textoBienvenida">Bienvenido</h1>
+  <form action="" class="formulario" [formGroup]="formularioIngreso" (ngSubmit)="login()">
+    <label for="ingresoUsuario">Usuario</label>
+    <input type="text" name="ingresoUsuario" (click)="reiniciarValidaciones()" formControlName="username"/>
+    <div *ngIf="errorUsuarioRequerido" class="error">Usuario requerido</div>
+    <label for="ingresoContraseña">Contraseña</label>
+    <input type="password" name="ingresoContraseña" (click)="reiniciarValidaciones()" formControlName="password"/>
+    <div *ngIf="errorContraseniaRequerida" class="error" >Contraseña requerido</div>
+    <button class="botonIngresar" type="submit">Ingresar</button>
+  </form>
+</div>
