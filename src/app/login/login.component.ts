@@ -36,8 +36,15 @@ export class LoginComponent {
     this.errorUsuarioRequerido = this.hayError('username')
     this.errorContraseniaRequerida = this.hayError('password')
 
+    console.log(this.formularioIngreso)
     if(!this.errorUsuarioRequerido && !this.errorContraseniaRequerida){
-      this.servicioAPI.registrarUsuario(this.formularioIngreso.value);
+      this.servicioAPI.registrarUsuario(this.formularioIngreso.value).subscribe(
+        {
+          next: (dataResponse) => alert(`HTTP Code: ${dataResponse.statusCode}\n${dataResponse.message}`),
+          error: (error) => alert(error),
+          complete: () => this.formularioIngreso.reset()
+      }
+      );
     }
   }
 }

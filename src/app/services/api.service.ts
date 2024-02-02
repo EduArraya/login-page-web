@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from '../models/usuario.model';
+import { ResponseHTTP } from '../models/responseHTTP.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  apiURL: string = 'localhost:3000'
+  apiURL: string = 'http://localhost:3000'
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -17,8 +17,8 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  registrarUsuario(nuevoUsuario: any): Observable<Object>{
+  registrarUsuario(nuevoUsuario: any): Observable<ResponseHTTP>{
     const datosUsuario = JSON.stringify(nuevoUsuario);
-    return this.httpClient.post<Object>("http://localhost:3000/users", datosUsuario, this.httpOptions);
+    return this.httpClient.post<ResponseHTTP>(`${this.apiURL}/users`, datosUsuario, this.httpOptions);
   }
 }
