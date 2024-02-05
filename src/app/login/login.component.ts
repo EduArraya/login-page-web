@@ -15,8 +15,8 @@ export class LoginComponent {
 
   constructor(private formulario: FormBuilder, private servicioAPI: ApiService) {
     this.formularioIngreso = this.formulario.group({
-      username: [''],
-      password: ['']
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 
@@ -40,7 +40,6 @@ export class LoginComponent {
       this.servicioAPI.registrarUsuario(this.formularioIngreso.value).subscribe(
         {
           next: (dataResponse) => {
-            console.log('aqui');
             alert(`HTTP Code: ${dataResponse.statusCode}\n${dataResponse.message}`)
           },
           error: (errorResponse) => {
